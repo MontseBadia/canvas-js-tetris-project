@@ -15,7 +15,7 @@ function Game (ctx, canvas) {
 Game.prototype.drawSquares = function () {
   var self = this;
   if (self.squares.length === 0) {
-    var newSquare = new Square (self.ctx);
+    var newSquare = new Square (self.ctx, self.canvas);
     self.squares.push(newSquare);
   }  
 }
@@ -25,7 +25,7 @@ Game.prototype.doFrame = function () {
   self.drawSquares();
   self.squares.forEach(function (item) {
     item.clearSquare();
-    item.moveDown(self.canvas);
+    item.moveDown();
     item.draw();
   });
 

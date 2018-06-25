@@ -11,6 +11,7 @@ function Square (ctx, canvas) {
     x: 0,
     y: 0
   };
+  this.status = "moving";
 };
 
 Square.prototype.clearSquare = function () {
@@ -28,12 +29,14 @@ Square.prototype.moveDown = function () {
   var self = this;
   if (self.position.y + self.size.height <= self.canvas.height){ //checks collision with bottom line
     self.position.y += 1;
+  } else {
+    self.status = "stop";
   }
 }
 
 Square.prototype.moveRight = function () {
   var self = this;
-  if (self.position.x + self.size.width < self.canvas.width && self.position.y + self.size.height <= self.canvas.height){ //checks collision with right side of canvas 
+  if (self.position.x + self.size.width < self.canvas.width && self.position.y + self.size.height <= self.canvas.height){ //checks collision with right side of canvas && bottom
     self.position.x += 30;
   }  
 }

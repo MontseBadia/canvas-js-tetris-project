@@ -15,9 +15,10 @@ function Game (ctx, canvas) {
 Game.prototype.drawSquares = function () {
   var self = this;
   if (self.squares.length === 0) {
-    var newSquare = new Square (self.ctx, self.canvas);
-    self.squares.push(newSquare);
-  }  
+    self.squares.push(new Square (self.ctx, self.canvas));
+  } else if (self.squares[self.squares.length-1].status === "stop") {
+    self.squares.push(new Square (self.ctx, self.canvas));
+  }
 }
 
 Game.prototype.doFrame = function () {

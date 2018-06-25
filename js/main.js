@@ -21,12 +21,14 @@ function main () {
   }
 
   function handleKeyUp (event) {
-    if (event.keyCode === 39) {
-      game.squares[0].clearSquare();
-      game.squares[0].moveRight();
-    } else if (event.keyCode === 37) {
-      game.squares[0].clearSquare();
-      game.squares[0].moveLeft();
+    for (var ix = 0; ix < game.squares.length; ix++) {
+      if (event.keyCode === 39) {
+        game.squares[ix].clearSquare();
+        game.squares[ix].moveRight();
+      } else if (event.keyCode === 37) {
+        game.squares[ix].clearSquare();
+        game.squares[ix].moveLeft();
+      }
     }
   }
   

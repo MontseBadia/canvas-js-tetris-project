@@ -1,8 +1,9 @@
 'use strict'
 
+//creates array of possible position "x" values for squares to start off at
 var possibleX = [];
-var ix=0;
-while (ix<=300-10) {
+var ix = 0;
+while (ix <= 300 - 10) {
   possibleX.push(ix);
   ix += 30
 }
@@ -18,7 +19,10 @@ function Square (ctx, canvas) {
     x: possibleX[Math.floor(Math.random()*possibleX.length)],
     y: 0
   };
-  this.status = "moving";
+  this.statusBottom = "moving";
+  this.statusLeft = "moving";
+  this.statusRight = "moving";
+  this.speed = 1;
 };
 
 Square.prototype.clearSquare = function () {
@@ -32,21 +36,36 @@ Square.prototype.draw = function () {
   self.ctx.fillRect(self.position.x, self.position.y, self.size.width, self.size.height);
 }
 
+Square.prototype.checkBottomCollision = function () {
+  var self = this;
+  return self.position.y + self.size.height <= self.canvas.height ? false : true;
+}
+
+Square.prototype.checkRightCollision = function () {
+  var self = this;
+  return self.position.x + self.size.width < self.canvas.width ? false : true;
+}
+
+Square.prototype.checkLeftCollision = function () {
+  var self = this;
+  return self.position.x > 0 && self.position.y + self.size.height <= self.canvas.height ? false : true;
+}
+
 Square.prototype.moveDown = function () {
   var self = this;
-  if (self.status != "stop") {
-    if (self.position.y + self.size.height <= self.canvas.height){ //checks collision with bottom line
-      self.position.y += 1;
+  if (self.statusBottom != "stop") {
+    if (!self.checkBottomCollision()){
+      self.position.y += self.speed;
     } else {
-      self.status = "stop";
+      self.statusBottom = "stop";
     }
   }  
 }
 
 Square.prototype.moveRight = function () {
   var self = this;
-  if (self.status != "stop") {
-    if (self.position.x + self.size.width < self.canvas.width && self.position.y + self.size.height <= self.canvas.height){ //checks collision with right side of canvas && bottom
+  if (self.statusBottom != "stop") {
+    if (!self.checkRightCollision() && !self.checkBottomCollision()){ 
       self.position.x += 30;
     }  
   }
@@ -54,8 +73,8 @@ Square.prototype.moveRight = function () {
 
 Square.prototype.moveLeft = function () { //checks collision with left side of canvas
   var self = this;
-  if (self.status != "stop") {
-    if (self.position.x > 0 && self.position.y + self.size.height <= self.canvas.height) {
+  if (self.statusBottom != "stop") {
+    if (!self.checkLeftCollision()) {
       self.position.x -= 30;
     }
   }  

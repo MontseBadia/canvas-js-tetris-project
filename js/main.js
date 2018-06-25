@@ -22,13 +22,18 @@ function main () {
 
   function handleKeyUp (event) {
     for (var ix = 0; ix < game.squares.length; ix++) {
-      if (event.keyCode === 39) {
-        game.squares[ix].clearSquare();
-        game.squares[ix].moveRight();
-      } else if (event.keyCode === 37) {
-        game.squares[ix].clearSquare();
-        game.squares[ix].moveLeft();
-      }
+      if (game.squares[ix].statusBottom != "stop"){
+        if (!game.checkRightCollisions(game.squares[ix])) { // NOT WORKING PROPERLY
+          //console.log(!game.checkRightCollisions(game.squares[ix])) ---> undefined
+          if (event.keyCode === 39) {
+            game.squares[ix].clearSquare();
+            game.squares[ix].moveRight();
+          } else if (event.keyCode === 37) {
+            game.squares[ix].clearSquare();
+            game.squares[ix].moveLeft();
+          }
+        } 
+      }  
     }
   }
   
@@ -42,7 +47,6 @@ function main () {
     var ctxCanvas = canvas.getContext("2d");
 
     game = new Game(ctxCanvas, canvas);
-    console.log(game)
     window.addEventListener("keyup", handleKeyUp);
 
     // setTimeout(function() {

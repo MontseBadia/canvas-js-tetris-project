@@ -12,6 +12,17 @@ function Game (ctx, canvas) {
   this.doFrame();
 }
 
+Game.prototype.checkCollisions = function (element) {
+  var self = this;
+  self.squares.forEach(function (item) {
+    if (element != item){ //so that it does not run into the same element
+      if (element.position.x === item.position.x && element.position.y + element.size.height === item.position.y) {
+        element.status = "stop";
+      }
+    }
+  })
+}
+
 Game.prototype.drawSquares = function () {
   var self = this;
   if (self.squares.length === 0) {
@@ -26,6 +37,7 @@ Game.prototype.doFrame = function () {
   self.drawSquares();
   self.squares.forEach(function (item) {
     item.clearSquare();
+    self.checkCollisions(item);
     item.moveDown();
     item.draw();
   });

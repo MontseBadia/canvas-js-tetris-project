@@ -7,7 +7,7 @@ function main () {
 
   function createSplashScreen () {
     var h1 = document.createElement("h1");
-    h1.innerHTML = "IRONHACK TETRIS"
+    h1.innerHTML = "IRON TETRIS"
     container.appendChild(h1);
     button = document.createElement("button");
     button.innerHTML = "CLICK TO START!";
@@ -48,6 +48,8 @@ function main () {
     }
     var canvas = document.createElement("canvas");
     canvas.setAttribute("id", "myCanvas");
+    canvas.setAttribute("width", "300");
+    canvas.setAttribute("height", "450");
     container.appendChild(canvas);
     var ctxCanvas = canvas.getContext("2d");
 

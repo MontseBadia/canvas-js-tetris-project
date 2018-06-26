@@ -13,7 +13,7 @@ function Square (ctx, canvas) {
   this.canvas = canvas;
   this.size = {
     width: 30,  
-    height: 10
+    height: 30
   };
   this.position = {
     x: possibleX[Math.floor(Math.random()*possibleX.length)],
@@ -22,7 +22,7 @@ function Square (ctx, canvas) {
   this.statusBottom = "moving";
   this.statusLeft = "moving";
   this.statusRight = "moving";
-  this.speed = 1;
+  this.speed = 3;
 };
 
 Square.prototype.clearSquare = function () {
@@ -38,7 +38,7 @@ Square.prototype.draw = function () {
 
 Square.prototype.checkBottomCollision = function () {
   var self = this;
-  return self.position.y + self.size.height <= self.canvas.height ? false : true;
+  return self.position.y + self.size.height < self.canvas.height ? false : true;
 }
 
 Square.prototype.checkRightCollision = function () {

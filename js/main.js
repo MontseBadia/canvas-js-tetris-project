@@ -23,7 +23,9 @@ function main () {
   function handleKeyUp (event) {
     for (var ix = 0; ix < game.squares.length; ix++) {
       if (game.squares[ix].statusBottom != "stop"){
-        if (!game.checkRightCollisions(game.squares[ix])) { // NOT WORKING PROPERLY
+        console.log(game.squares[ix].statusRight)
+        if (game.squares[ix].statusRight != "stop") {
+        // if (!game.checkRightCollisions(game.squares[ix])) { // NOT WORKING PROPERLY
           //console.log(!game.checkRightCollisions(game.squares[ix])) ---> undefined
           if (event.keyCode === 39) {
             game.squares[ix].clearSquare();
@@ -32,7 +34,8 @@ function main () {
             game.squares[ix].clearSquare();
             game.squares[ix].moveLeft();
           }
-        } 
+        // } 
+        }
       }  
     }
   }

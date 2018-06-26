@@ -29,13 +29,21 @@ Game.prototype.checkRightCollisions = function (element) { // NOT WORKING!!
   self.squares.forEach(function (item) {
     if (element != item) {
       if (element.position.y >= item.position.y && element.position.x + element.size.width >= item.position.x) {
-        return true;
+        element.statusRight = "stop";
       } else {
         return false;
       }
     }  
   })
 }
+
+
+
+
+// if (giftData.x < playerData.x + playerData.width &&
+//   giftData.x + giftData.width > playerData.x &&
+//   giftData.y < playerData.y + playerData.height &&
+//   giftData.height + giftData.y > playerData.y) {
 
 Game.prototype.drawSquares = function () {
   var self = this;
@@ -51,12 +59,16 @@ Game.prototype.doFrame = function () {
   self.drawSquares();
   self.squares.forEach(function (item) {
     item.clearSquare();
+    self.checkRightCollisions(item);
     self.checkCollisions(item);
     item.moveDown();
     item.draw();
-  });
-
-  window.requestAnimationFrame(function () {
-    self.doFrame();
   })
+
+  // setTimeout(function(){
+    window.requestAnimationFrame(function () {
+      self.doFrame();
+    })
+  // }, 700)
+
 }

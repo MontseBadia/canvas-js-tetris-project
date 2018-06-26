@@ -7,6 +7,7 @@ function main () {
   var game = null;
   var canvas = null;
   var score = null;
+  var lines = null;
 
   function createSplashScreen () {
     h1 = document.createElement("h1");
@@ -55,9 +56,14 @@ function main () {
     canvas.setAttribute("height", "450");
     container.appendChild(canvas);
 
+    lines = document.createElement("h2");
+    lines.setAttribute("id", "lines");
+    lines.innerHTML = "Lines:  0"
+    container.appendChild(lines);
+    
     score = document.createElement("h2");
     score.setAttribute("id", "score");
-    score.innerHTML = "Score:"
+    score.innerHTML = "Score:  0"
     container.appendChild(score);
 
     var ctxCanvas = canvas.getContext("2d");

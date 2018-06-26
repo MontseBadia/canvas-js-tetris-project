@@ -31,6 +31,8 @@ function Game (ctx, canvas, cb) {
   this.doFrame();
 }
 
+var countLines = 0;
+
 Game.prototype.checkIfEnded = function () {
   var self = this;
   self.squares.forEach(function(item){
@@ -82,6 +84,11 @@ Game.prototype.deleteCompletedLines = function () {
         })
       })
       value = []; //so that line value is empty again
+      if (self.deletedLine === "yes") {
+        countLines += 1;
+        lines.innerHTML = "Lines:  " + countLines;
+        score.innerHTML = "Score:  " + countLines * 100;
+      }
     } 
   })
 }

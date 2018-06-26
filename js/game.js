@@ -24,7 +24,7 @@ function Game (ctx, canvas) {
     lineFourteen: [],
     lineFifteen: []
   }
-  this.deletedLine = "no";
+  this.deletedLine = "no"; //to make sure it does not relocate squares without end
   this.isEnded = null;
   this.squares = [];
   this.doFrame();
@@ -41,6 +41,20 @@ Game.prototype.relocateSquares = function () {
         item.relocation = "yes";
       }
     })
+    self.grid.lineOne = self.grid.lineTwo;
+    self.grid.lineTwo = self.grid.lineThree;
+    self.grid.lineThree = self.grid.lineFour;
+    self.grid.lineFour =  self.grid.lineFive;
+    self.grid.lineFive = self.grid.lineSix;
+    self.grid.lineSix = self.grid.lineSeven;
+    self.grid.lineSeven = self.grid.lineEight;
+    self.grid.lineEight = self.grid.lineNine;
+    self.grid.lineNine = self.grid.lineTen;
+    self.grid.lineTen = self.grid.lineEleven;
+    self.grid.lineEleven = self.grid.lineTwelve;
+    self.grid.lineTwelve = self.grid.lineThirteen;
+    self.grid.lineThirteen = self.grid.lineFourteen;
+    self.grid.lineFourteen = self.grid.lineFifteen;
   }  
 }
 
@@ -66,7 +80,7 @@ Game.prototype.checkCompletedLines = function () {
   var self = this;
   Object.values(self.grid).forEach(function(item){
     if (item.length === 10) {
-      console.log("completed line")
+      // console.log("completed line")
       item.push("0");
     }
   })
@@ -75,6 +89,7 @@ Game.prototype.checkCompletedLines = function () {
 Game.prototype.createLinesArray = function () {
   var self = this;
   self.squares.forEach(function (item) {
+    // console.log(item)
     if (item.statusBottom === "stop" && item.statusLine != "off") {
       switch (item.position.y) {
         case self.canvas.height - item.size.height:

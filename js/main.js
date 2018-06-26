@@ -23,7 +23,7 @@ function main () {
   function handleKeyUp (event) {
     for (var ix = 0; ix < game.squares.length; ix++) {      
       if (game.squares[ix].statusBottom != "stop"){
-        console.log(game.squares[ix].statusRight)
+        // console.log(game.squares[ix].statusRight)
         if (game.squares[ix].statusRight != "stop") {
           if (event.keyCode === 39) {
             game.squares[ix].clearSquare();

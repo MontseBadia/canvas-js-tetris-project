@@ -22,9 +22,9 @@ function Square (ctx, canvas) {
   this.statusBottom = "moving";
   this.statusLeft = "moving";
   this.statusRight = "moving";
-  this.statusLine = "on";
+  this.statusLine = "on"; //"off" is to make sure a square has been pushed inside a line
   this.relocation = "no";
-  this.speed = 6;
+  this.speed = 5;
 };
 
 Square.prototype.clearSquare = function () {

@@ -1,6 +1,6 @@
 'use strict'
 
-function Game (ctx, canvas) {
+function Game (ctx, canvas, cb) {
   this.ctx = ctx;
   this.canvas = canvas;
   this.size = {
@@ -25,20 +25,30 @@ function Game (ctx, canvas) {
     lineFifteen: []
   }
   this.deletedLine = "no"; //to make sure it does not relocate squares without end
-  this.isEnded = null;
+  this.callback = cb;
+  this.isEnded = false;
   this.squares = [];
   this.doFrame();
+}
+
+Game.prototype.checkIfEnded = function () {
+  var self = this;
+  self.squares.forEach(function(item){
+    if(item.position.y === 0 && item.statusBottom === "stop"){
+      self.isEnded = true;
+      self.callback();
+    }
+  })
 }
 
 Game.prototype.relocateSquares = function () {
   var self = this;
   if (self.deletedLine === "yes") {
     self.squares.forEach(function(item) {
-      if (item.statusBottom === "stop" && item.relocation != "yes") {
+      if (item.statusBottom === "stop") {
         item.clearSquare();
         item.position.y += item.size.height
         item.draw()
-        item.relocation = "yes";
       }
     })
     self.grid.lineOne = self.grid.lineTwo;
@@ -139,6 +149,7 @@ Game.prototype.createLinesArray = function () {
         break;
       }
       item.statusLine = "off";
+      if (item.statusLine === "off") {  console.log(self.grid)      }
     }
   })
 }
@@ -199,6 +210,7 @@ Game.prototype.doFrame = function () {
     self.checkCompletedLines();
     self.deleteCompletedLines();
     self.relocateSquares();
+    self.checkIfEnded();
     // item.draw();
 
   })

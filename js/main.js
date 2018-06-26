@@ -2,11 +2,14 @@
 
 function main () {
 
+  var h1 = null;
   var button = null;
   var game = null;
+  var canvas = null;
+  var score = null;
 
   function createSplashScreen () {
-    var h1 = document.createElement("h1");
+    h1 = document.createElement("h1");
     h1.innerHTML = "IRON TETRIS"
     container.appendChild(h1);
     button = document.createElement("button");
@@ -46,14 +49,20 @@ function main () {
     if (document.getElementById("game-over")) {
       document.getElementById("game-over").remove();
     }
-    var canvas = document.createElement("canvas");
+    canvas = document.createElement("canvas");
     canvas.setAttribute("id", "myCanvas");
     canvas.setAttribute("width", "300");
     canvas.setAttribute("height", "450");
     container.appendChild(canvas);
+
+    score = document.createElement("h2");
+    score.setAttribute("id", "score");
+    score.innerHTML = "Score:"
+    container.appendChild(score);
+
     var ctxCanvas = canvas.getContext("2d");
 
-    game = new Game(ctxCanvas, canvas);
+    game = new Game(ctxCanvas, canvas, endGame);
     window.addEventListener("keyup", handleKeyUp);
 
     // setTimeout(function() {
@@ -62,7 +71,8 @@ function main () {
   }
   
   function endGame() {
-    document.getElementById("myCanvas").remove();
+    canvas = document.getElementById("myCanvas");
+    canvas.remove();
     createGameOver();
   }
   

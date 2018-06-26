@@ -24,7 +24,7 @@ function Square (ctx, canvas) {
   this.statusRight = "moving";
   this.statusLine = "on";
   this.relocation = "no";
-  this.speed = 5;
+  this.speed = 6;
 };
 
 Square.prototype.clearSquare = function () {

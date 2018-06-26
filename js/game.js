@@ -128,11 +128,11 @@ Game.prototype.createLinesArray = function () {
   })
 }
 
-Game.prototype.checkCollisions = function (element) {
+Game.prototype.checkCollisions = function (element) { //bottom collision between squares
   var self = this;
   self.squares.forEach(function (item) {
     if (element != item){ //so that it does not run into the same element --> can be deleted ?
-      if (element.position.x === item.position.x && element.position.y + element.size.height === item.position.y) {
+      if (element.position.x === item.position.x && element.position.y + element.size.height >= item.position.y) {
         element.statusBottom = "stop";
       }
     }

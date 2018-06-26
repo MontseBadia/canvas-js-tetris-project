@@ -21,21 +21,23 @@ function main () {
   }
 
   function handleKeyUp (event) {
-    for (var ix = 0; ix < game.squares.length; ix++) {
+    for (var ix = 0; ix < game.squares.length; ix++) {      
       if (game.squares[ix].statusBottom != "stop"){
         console.log(game.squares[ix].statusRight)
         if (game.squares[ix].statusRight != "stop") {
-        // if (!game.checkRightCollisions(game.squares[ix])) { // NOT WORKING PROPERLY
-          //console.log(!game.checkRightCollisions(game.squares[ix])) ---> undefined
           if (event.keyCode === 39) {
             game.squares[ix].clearSquare();
             game.squares[ix].moveRight();
-          } else if (event.keyCode === 37) {
+          } 
+        }
+        game.squares[ix].statusRight = "moving";
+        if (game.squares[ix].statusLeft != "stop") {
+          if (event.keyCode === 37) {
             game.squares[ix].clearSquare();
             game.squares[ix].moveLeft();
           }
-        // } 
         }
+        game.squares[ix].statusLeft = "moving";
       }  
     }
   }

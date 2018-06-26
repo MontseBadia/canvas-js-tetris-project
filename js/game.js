@@ -19,31 +19,31 @@ Game.prototype.checkCollisions = function (element) {
       if (element.position.x === item.position.x && element.position.y + element.size.height === item.position.y) {
         element.statusBottom = "stop";
       }
-      
     }
   })
 }
 
-Game.prototype.checkRightCollisions = function (element) { // NOT WORKING!!
+Game.prototype.checkRightCollisions = function (element) {
   var self = this;
   self.squares.forEach(function (item) {
     if (element != item) {
-      if (element.position.y >= item.position.y && element.position.x + element.size.width >= item.position.x) {
+      if (element.position.y + element.size.height >= item.position.y && element.position.x + element.size.width === item.position.x) {
         element.statusRight = "stop";
-      } else {
-        return false;
       }
     }  
   })
 }
 
-
-
-
-// if (giftData.x < playerData.x + playerData.width &&
-//   giftData.x + giftData.width > playerData.x &&
-//   giftData.y < playerData.y + playerData.height &&
-//   giftData.height + giftData.y > playerData.y) {
+Game.prototype.checkLeftCollisions = function (element) {
+  var self = this;
+  self.squares.forEach(function (item) {
+    if (element != item) {
+      if (element.position.y + element.size.height >= item.position.y && element.position.x === item.position.x + item.size.width) {
+        element.statusLeft = "stop";
+      }
+    }  
+  })
+}
 
 Game.prototype.drawSquares = function () {
   var self = this;
@@ -60,6 +60,7 @@ Game.prototype.doFrame = function () {
   self.squares.forEach(function (item) {
     item.clearSquare();
     self.checkRightCollisions(item);
+    self.checkLeftCollisions(item);
     self.checkCollisions(item);
     item.moveDown();
     item.draw();

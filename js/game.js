@@ -30,16 +30,18 @@ function Game (ctx, canvas) {
 }
 
 Game.prototype.deleteCompletedLines = function () {
-  // var self = this;
-  // Object.values(self.grid).forEach(function(value){
-  //   value.forEach(function(element){
-  //     self.squares.forEach(function(item){
-  //       if (item === element) {
-  //         item.clearSquare();
-  //       }
-  //     })
-  //   })  
-  // })
+  var self = this;
+  Object.values(self.grid).forEach(function(value){
+    if (value.length === 11) {
+      value.forEach(function(element){
+        self.squares.forEach(function(item){
+          if (item === element) {
+            item.clearSquare();
+          }
+        })
+      }) 
+    } 
+  })
 }
 
 Game.prototype.checkCompletedLines = function () {
@@ -155,14 +157,14 @@ Game.prototype.doFrame = function () {
   self.drawSquares();
   self.squares.forEach(function (item) {
     item.clearSquare();
-    self.createLinesArray();
-    self.checkCompletedLines();
-    self.deleteCompletedLines();
     self.checkRightCollisions(item);
     self.checkLeftCollisions(item);
     self.checkCollisions(item);
     item.moveDown();
     item.draw();
+    self.createLinesArray();
+    self.checkCompletedLines();
+    self.deleteCompletedLines();
   })
 
   // setTimeout(function(){

@@ -24,19 +24,51 @@ function Game (ctx, canvas) {
     lineFourteen: [],
     lineFifteen: []
   }
+  this.deletedLine = "no";
   this.isEnded = null;
   this.squares = [];
   this.doFrame();
 }
 
+Game.prototype.relocateSquares = function () {
+  var self = this;
+  if (self.deletedLine === "yes") {
+    self.squares.forEach(function(item) {
+      if (item.statusBottom === "stop") {
+        item.position.y += item.size.height
+      }
+    })
+  }  
+
+
+
+
+
+  // Object.values(self.grid).forEach(function(value){
+  //   if (value.length === 11) {
+  //     value.forEach(function(element){
+  //       self.squares.forEach(function(item){
+  //         if (item === element) {
+  //           item.position.y += item.size.height
+  //         }
+  //       })
+  //     }) 
+  //   } 
+  // })
+
+
+}
+
 Game.prototype.deleteCompletedLines = function () {
   var self = this;
+  self.deletedLine = "no";
   Object.values(self.grid).forEach(function(value){
     if (value.length === 11) {
       value.forEach(function(element){
         self.squares.forEach(function(item){
           if (item === element) {
             item.clearSquare();
+            self.deletedLine = "yes";
           }
         })
       }) 
@@ -165,6 +197,7 @@ Game.prototype.doFrame = function () {
     self.createLinesArray();
     self.checkCompletedLines();
     self.deleteCompletedLines();
+    self.relocateSquares();
   })
 
   // setTimeout(function(){

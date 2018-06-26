@@ -23,6 +23,7 @@ function Square (ctx, canvas) {
   this.statusLeft = "moving";
   this.statusRight = "moving";
   this.statusLine = "on";
+  this.relocation = "no";
   this.speed = 5;
 };
 

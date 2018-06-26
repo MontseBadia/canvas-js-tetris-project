@@ -34,29 +34,14 @@ Game.prototype.relocateSquares = function () {
   var self = this;
   if (self.deletedLine === "yes") {
     self.squares.forEach(function(item) {
-      if (item.statusBottom === "stop") {
+      if (item.statusBottom === "stop" && item.relocation != "yes") {
+        item.clearSquare();
         item.position.y += item.size.height
+        item.draw()
+        item.relocation = "yes";
       }
     })
   }  
-
-
-
-
-
-  // Object.values(self.grid).forEach(function(value){
-  //   if (value.length === 11) {
-  //     value.forEach(function(element){
-  //       self.squares.forEach(function(item){
-  //         if (item === element) {
-  //           item.position.y += item.size.height
-  //         }
-  //       })
-  //     }) 
-  //   } 
-  // })
-
-
 }
 
 Game.prototype.deleteCompletedLines = function () {
@@ -65,13 +50,14 @@ Game.prototype.deleteCompletedLines = function () {
   Object.values(self.grid).forEach(function(value){
     if (value.length === 11) {
       value.forEach(function(element){
-        self.squares.forEach(function(item){
+        self.squares.forEach(function(item, index){
           if (item === element) {
-            item.clearSquare();
+            self.squares.splice(index, 0);
             self.deletedLine = "yes";
           }
         })
-      }) 
+      })
+      value = []; //so that line value is empty again
     } 
   })
 }
@@ -198,6 +184,8 @@ Game.prototype.doFrame = function () {
     self.checkCompletedLines();
     self.deleteCompletedLines();
     self.relocateSquares();
+    // item.draw();
+
   })
 
   // setTimeout(function(){

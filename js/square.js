@@ -16,7 +16,8 @@ function Square (ctx, canvas) {
     height: 30
   };
   this.position = {
-    x: possibleX[Math.floor(Math.random()*possibleX.length)],
+    // x: possibleX[Math.floor(Math.random()*possibleX.length)],
+    x: 30,
     y: 0
   };
   this.statusBottom = "moving";
@@ -24,7 +25,7 @@ function Square (ctx, canvas) {
   this.statusRight = "moving";
   this.statusLine = "on"; //"off" is to make sure a square has been pushed inside a line
   this.deleted = false;
-  this.speed = 6;
+  this.speed = 4;
 };
 
 Square.prototype.clearSquare = function () {

@@ -38,7 +38,9 @@ Game.prototype.checkIfEnded = function () {
   self.squares.forEach(function(item){
     if(item.position.y === 0 && item.statusBottom === "stop"){
       self.isEnded = true;
-      self.callback();
+      setTimeout(function(){
+        self.callback();
+      }, 2500)
     }
   })
 }
@@ -240,13 +242,15 @@ Game.prototype.doFrame = function () {
     self.relocateSquares();
     self.checkIfEnded();
     // item.draw();
+  })
 
+  window.requestAnimationFrame(function () {
+    if(!self.isEnded){
+      self.doFrame();
+    }
   })
 
   // setTimeout(function(){
-    window.requestAnimationFrame(function () {
-      self.doFrame();
-    })
   // }, 700)
 
 }

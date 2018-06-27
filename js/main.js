@@ -10,11 +10,12 @@ function main () {
   var lines = null;
 
   function createSplashScreen () {
-    h1 = document.createElement("h1");
-    h1.innerHTML = "IRON TETRIS"
-    container.appendChild(h1);
+    // h1 = document.createElement("h1");
+    // h1.innerHTML = "IRON TETRIS"
+    // h1.setAttribute("id", "title");
+    // container.appendChild(h1);
     button = document.createElement("button");
-    button.innerHTML = "CLICK TO START!";
+    button.innerHTML = "START";
     container.appendChild(button);
     button.addEventListener("click", moveToGame);
   }
@@ -65,6 +66,10 @@ function main () {
     score.setAttribute("id", "score");
     score.innerHTML = "Score:  0"
     container.appendChild(score);
+
+    var tetrisLogo = document.getElementById("tetris-logo");
+    tetrisLogo.remove();
+    button.remove();
 
     var ctxCanvas = canvas.getContext("2d");
 

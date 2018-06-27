@@ -22,8 +22,68 @@ canvas {
 
 #container {
   text-align: center;
+  background-image: url("img/space.jpg");
+  background-size: cover;
+  padding-bottom: 250px;
+  /* overflow: hidden; */
+  display: flex;
+  justify-content: center;
+  padding-top: 15%;
 }
 
 button {
-  margin-top: 20%;
+  /* margin-top: 20%; */
+  background-color: transparent;
+  border: none;
+  background-image: url("img/start-button.png");
+  background-size: cover;
+  width: 150px;
+  height: 150px;
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.2em;
+  /* padding: 100px; */
+  /* float: right; */
+}
+
+/* #title {
+  margin-top: 0;
+} */
+
+#tetris-logo {
+  background-image: url("img/tetris-logo.png");
+  background-size: cover;
+  height: 350px;
+  width: 500px;
+  margin-right: 200px;
+  /* margin: 200px; */
+  /* float: left; */
+}
+
+/* #arrow-left {
+  background-image: url("img/left-arrow.png");
+  background-size: cover;
+  height: 100px;
+  width: 400px;
+}
+
+#arrow-right {
+  background-image: url("img/right-arrow.png");
+  background-size: contain;
+  height: 100px;
+  width: 200px;
+} */
+
+#lines {
+  margin-left: 50px;
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 2em;
+}
+
+#score {
+  margin-left: 50px;
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 2em;
 }

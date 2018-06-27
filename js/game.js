@@ -67,38 +67,58 @@ Game.prototype.relocateSquares = function () {
     self.grid.lineTwelve = self.grid.lineThirteen;
     self.grid.lineThirteen = self.grid.lineFourteen;
     self.grid.lineFourteen = self.grid.lineFifteen;
+    self.grid.lineFifteen = [];
   }  
 }
 
 Game.prototype.deleteCompletedLines = function () {
   var self = this;
   self.deletedLine = "no";
-  Object.values(self.grid).forEach(function(value){
+  var value= null;
+  // var indexElementsToDelete = [];
+
+  Object.keys(self.grid).forEach(function(key){
+    value = self.grid[key];
     if (value.length === 11) {
       value.forEach(function(element){
         self.squares.forEach(function(item, index){
           if (item === element) {
-            self.squares.splice(index, 0);
+            // indexElementsToDelete.push(index)
+            // console.log(self.squares.splice(index, 0))
+            // self.squares.splice(index, 0);
+            // console.log(self.squares)
             self.deletedLine = "yes";
+            item.deleted = true;
           }
         })
       })
+      for(var j=self.squares.length-1; j>=0; j--){
+        if(self.squares[j].deleted === true){
+          self.squares[j].clearSquare();
+          self.squares.splice(j, 1)
+        }
+      }
+      // console.log(self.squares)
       value = []; //so that line value is empty again
       if (self.deletedLine === "yes") {
         countLines += 1;
         lines.innerHTML = "Lines:  " + countLines;
         score.innerHTML = "Score:  " + countLines * 100;
       }
+      // console.log("deleted line: "+ countLines)
     } 
   })
 }
 
 Game.prototype.checkCompletedLines = function () {
   var self = this;
-  Object.values(self.grid).forEach(function(item){
-    if (item.length === 10) {
+  var value = null;
+
+  Object.keys(self.grid).forEach(function(key){
+    value = self.grid[key];
+    if (value.length === 10) {
       // console.log("completed line")
-      item.push("0");
+      value.push("0");
     }
   })
 }
@@ -199,6 +219,7 @@ Game.prototype.drawSquares = function () {
   if (self.squares.length === 0) {
     self.squares.push(new Square (self.ctx, self.canvas));
   } else if (self.squares[self.squares.length-1].statusBottom === "stop") {
+    console.log(self.squares.length)
     self.squares.push(new Square (self.ctx, self.canvas));
   }
 }

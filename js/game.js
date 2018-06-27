@@ -28,7 +28,7 @@ function Game (ctx, canvas, cb) {
   this.callback = cb;
   this.isEnded = false;
   this.squares = [];
-  this.speed = 11;
+  this.speed = 5;
 
   this.doFrame();
 
@@ -82,7 +82,6 @@ Game.prototype.deleteCompletedLines = function () {
   var self = this;
   self.deletedLine = "no";
   var value= null;
-  // var indexElementsToDelete = [];
 
   Object.keys(self.grid).forEach(function(key){
     value = self.grid[key];
@@ -90,10 +89,6 @@ Game.prototype.deleteCompletedLines = function () {
       value.forEach(function(element){
         self.squares.forEach(function(item, index){
           if (item === element) {
-            // indexElementsToDelete.push(index)
-            // console.log(self.squares.splice(index, 0))
-            // self.squares.splice(index, 0);
-            // console.log(self.squares)
             self.deletedLine = "yes";
             item.deleted = true;
           }
@@ -261,8 +256,6 @@ Game.prototype.doFrame = function () {
       self.doFrame();
     }
   })
-
   // setTimeout(function(){
   // }, 700)
-
 }

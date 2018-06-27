@@ -26,6 +26,10 @@ function Square (ctx, canvas, speed) {
   this.statusLine = "on"; //"off" is to make sure a square has been pushed inside a line
   this.deleted = false;
   this.speed = speed;
+  this.squareImageGreen = new Image ();
+  this.squareImageGreen.src = "img/green-square.png";
+  this.squareImageYellow = new Image ();
+  this.squareImageYellow.src = "img/yellow-square.png";
 };
 
 Square.prototype.clearSquare = function () {
@@ -35,8 +39,13 @@ Square.prototype.clearSquare = function () {
 
 Square.prototype.draw = function () {
   var self = this;
-  self.ctx.fillStyle = "red";
-  self.ctx.fillRect(self.position.x, self.position.y, self.size.width, self.size.height);
+  // self.ctx.fillStyle = "red";
+  // self.ctx.fillRect(self.position.x, self.position.y, self.size.width, self.size.height);
+  if (Math.floor(Math.random() * 2) === 1){
+    self.ctx.drawImage(self.squareImageGreen,  self.position.x, self.position.y, self.size.width, self.size.height);
+  }else {
+    self.ctx.drawImage(self.squareImageYellow,  self.position.x, self.position.y, self.size.width, self.size.height);
+  }
 }
 
 Square.prototype.checkBottomCollision = function () {

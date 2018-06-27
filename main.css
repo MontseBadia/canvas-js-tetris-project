@@ -22,7 +22,7 @@ canvas {
   height: 450px; */
 }
 
-#container {
+.container {
   display: flex;
   justify-content: center;
   padding-top: 10%;

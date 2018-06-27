@@ -10,12 +10,17 @@ function main () {
   var lines = null;
   var tetrisLogo = null;
   var gameOver = null;
+  var counterGameOver = 0;
+  var container = null;
 
   function createSplashScreen () {
     // h1 = document.createElement("h1");
     // h1.innerHTML = "IRON TETRIS"
     // h1.setAttribute("id", "title");
     // container.appendChild(h1);
+    container = document.getElementById("main-container")
+    container.setAttribute("class", "container");
+
     button = document.createElement("button");
     button.innerHTML = "START";
     button.setAttribute("class", "button")
@@ -27,6 +32,7 @@ function main () {
   }
   
   function moveToGame () {
+    gameOver.remove();
     button.remove();
     createGame();
   }
@@ -54,9 +60,16 @@ function main () {
   }
   
   function createGame () {
+    
     if (document.getElementById("game-over")) {
       document.getElementById("game-over").remove();
     }
+    if(counterGameOver !== 0) {
+      container = document.getElementById("main-container");
+      container.setAttribute("class", "container");
+    }
+    container = document.getElementById("main-container")
+
     canvas = document.createElement("canvas");
     canvas.setAttribute("id", "myCanvas");
     canvas.setAttribute("width", "300");
@@ -73,8 +86,11 @@ function main () {
     score.innerHTML = "Score:  0"
     container.appendChild(score);
 
-    tetrisLogo = document.getElementById("tetris-logo");
-    tetrisLogo.remove();
+    if(counterGameOver===0){
+      tetrisLogo = document.getElementById("tetris-logo");
+      tetrisLogo.remove();
+    }
+
     button.remove();
     gameOver.remove()
 
@@ -110,7 +126,9 @@ function main () {
     button.setAttribute("class", "button2");
     button.addEventListener("click", moveToGame);
 
-    container.removeAttribute("id");
+    container.removeAttribute("class");
+
+    counterGameOver += 1;
     
   }
   

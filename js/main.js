@@ -8,6 +8,8 @@ function main () {
   var canvas = null;
   var score = null;
   var lines = null;
+  var tetrisLogo = null;
+  var gameOver = null;
 
   function createSplashScreen () {
     // h1 = document.createElement("h1");
@@ -18,6 +20,9 @@ function main () {
     button.innerHTML = "START";
     container.appendChild(button);
     button.addEventListener("click", moveToGame);
+
+    gameOver = document.getElementById("gif");
+    gameOver.remove()
   }
   
   function moveToGame () {
@@ -67,9 +72,10 @@ function main () {
     score.innerHTML = "Score:  0"
     container.appendChild(score);
 
-    var tetrisLogo = document.getElementById("tetris-logo");
+    tetrisLogo = document.getElementById("tetris-logo");
     tetrisLogo.remove();
     button.remove();
+    gameOver.remove()
 
     var ctxCanvas = canvas.getContext("2d");
 
@@ -84,18 +90,25 @@ function main () {
   function endGame() {
     canvas = document.getElementById("myCanvas");
     canvas.remove();
+    lines.remove();
+    score.remove();
     createGameOver();
   }
   
   function createGameOver() {
-    var h1 = document.createElement("h1");
-    h1.setAttribute("id", "game-over");
-    h1.innerHTML = "GAME OVER!!!"
-    container.appendChild(h1);
+    // var h1 = document.createElement("h1");
+    // h1.setAttribute("id", "game-over");
+    // h1.innerHTML = "GAME OVER!!!"
+    // container.appendChild(h1);
+    
+    container.appendChild(gameOver);
+
     button = document.createElement("button");
-    button.innerHTML = "RESTART THE GAME";
+    button.innerHTML = "RESTART";
     container.appendChild(button);
     button.addEventListener("click", moveToGame);
+
+    
   }
   
   createSplashScreen();

@@ -8,7 +8,7 @@ while (ix <= 300 - 10) {
   ix += 30
 }
 
-function Square (ctx, canvas) {
+function Square (ctx, canvas, speed) {
   this.ctx = ctx;
   this.canvas = canvas;
   this.size = {
@@ -17,7 +17,7 @@ function Square (ctx, canvas) {
   };
   this.position = {
     // x: possibleX[Math.floor(Math.random()*possibleX.length)],
-    x: 30,
+    x: 120,
     y: 0
   };
   this.statusBottom = "moving";
@@ -25,7 +25,7 @@ function Square (ctx, canvas) {
   this.statusRight = "moving";
   this.statusLine = "on"; //"off" is to make sure a square has been pushed inside a line
   this.deleted = false;
-  this.speed = 4;
+  this.speed = speed;
 };
 
 Square.prototype.clearSquare = function () {
@@ -61,6 +61,7 @@ Square.prototype.moveDown = function () {
       self.position.y += self.speed;
     } else {
       self.statusBottom = "stop";
+      self.position.y = self.canvas.height - self.size.height
     }
   }  
 }

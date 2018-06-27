@@ -45,7 +45,7 @@ Game.prototype.checkIfEnded = function () {
       self.isEnded = true;
       setTimeout(function(){
         self.callback();
-      }, 2500)
+      }, 1000)
     }
   })
 }

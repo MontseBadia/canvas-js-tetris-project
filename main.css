@@ -31,7 +31,13 @@ canvas {
   /* overflow: hidden; */
 }
 
-button {
+/* .containerGameOver { */
+  /* text-align: center;
+  margin: 0 auto; */
+  /* margin-left: 20%; */
+/* } */
+
+.button {
   background-color: transparent;
   border: none;
   background-image: url("img/start-button.png");
@@ -45,6 +51,24 @@ button {
   /* float: right; */
   /* margin-top: 20%; */
 }
+
+.button2 {
+  background-color: transparent;
+  border: none;
+  background-image: url("img/start-button.png");
+  background-size: cover;
+  width: 150px;
+  height: 150px;
+  color: black;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.2em;
+  /* padding: 100px; */
+  /* float: right; */
+  /* margin-top: 20%; */
+  margin-left: 45%;
+}
+
+
 
 /* #title {
   margin-top: 0;
@@ -94,4 +118,6 @@ button {
   background-size: cover;
   height: 400px;
   width: 1000px;
+  margin-left: 13%;
+  margin-top: 5%;
 }

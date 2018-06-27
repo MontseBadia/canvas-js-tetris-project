@@ -18,6 +18,7 @@ function main () {
     // container.appendChild(h1);
     button = document.createElement("button");
     button.innerHTML = "START";
+    button.setAttribute("class", "button")
     container.appendChild(button);
     button.addEventListener("click", moveToGame);
 
@@ -106,8 +107,10 @@ function main () {
     button = document.createElement("button");
     button.innerHTML = "RESTART";
     container.appendChild(button);
+    button.setAttribute("class", "button2");
     button.addEventListener("click", moveToGame);
 
+    container.removeAttribute("id");
     
   }
   

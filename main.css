@@ -10,6 +10,8 @@ html {
 body {
   margin: 0;
   padding: 0;
+  background-image: url("img/space.jpg");
+  background-size: cover;
 }
 
 /* ---- canvas ---- */
@@ -21,29 +23,27 @@ canvas {
 }
 
 #container {
-  text-align: center;
-  background-image: url("img/space.jpg");
-  background-size: cover;
-  padding-bottom: 250px;
-  /* overflow: hidden; */
   display: flex;
   justify-content: center;
-  padding-top: 15%;
+  padding-top: 10%;
+  /* text-align: center; */
+  /* padding-bottom: 250px; */
+  /* overflow: hidden; */
 }
 
 button {
-  /* margin-top: 20%; */
   background-color: transparent;
   border: none;
   background-image: url("img/start-button.png");
   background-size: cover;
   width: 150px;
   height: 150px;
-  color: white;
+  color: black;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 1.2em;
   /* padding: 100px; */
   /* float: right; */
+  /* margin-top: 20%; */
 }
 
 /* #title {
@@ -53,8 +53,8 @@ button {
 #tetris-logo {
   background-image: url("img/tetris-logo.png");
   background-size: cover;
-  height: 350px;
-  width: 500px;
+  height: 450px;
+  width: 650px;
   margin-right: 200px;
   /* margin: 200px; */
   /* float: left; */
@@ -76,6 +76,7 @@ button {
 
 #lines {
   margin-left: 50px;
+  padding-right: 80px;
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 2em;

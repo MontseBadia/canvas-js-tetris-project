@@ -47,17 +47,17 @@ canvas {
 .instructions {
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 2em;
+  font-size: 1.5em;
   margin-bottom: 0;
 }
 
 .instructionsContent {
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 1.5em;
+  font-size: 1.4em;
   margin-top: 0;
-  width: 300px;
-  line-height: 7vh;
+  width: 280px;
+  line-height: 5vh;
 }
 
 .button {

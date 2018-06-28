@@ -40,12 +40,12 @@ function main () {
     button.addEventListener("click", moveToGame);
 
     instructions = document.createElement("p");
-    instructions.innerHTML = "Instructions: ";
+    instructions.innerHTML = "INSTRUCTIONS: ";
     instructions.setAttribute("class", "instructions");
     btnInst.appendChild(instructions);
 
     instructionsContent = document.createElement("p");
-    instructionsContent.innerHTML = "Press ⇦ to move left     Press ⇨ to move right";
+    instructionsContent.innerHTML = "Press ⇦ to move left Press ⇨ to move right Press space bar to pause";
     instructionsContent.setAttribute("class", "instructionsContent");
     btnInst.appendChild(instructionsContent);
 

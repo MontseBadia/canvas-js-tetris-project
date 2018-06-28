@@ -28,11 +28,13 @@ function Game (ctx, canvas, cb) {
   this.callback = cb;
   this.isEnded = false;
   this.squares = [];
-  this.speed = 15;
+  this.speed = 8;
   this.score = 0;
   this.scoreToAdd = 1;
   this.countLines = 0;
   this.level = 1;
+
+  this.isPaused = false;
   this.doFrame();
 }
 
@@ -260,9 +262,11 @@ Game.prototype.doFrame = function () {
   })
 
   window.requestAnimationFrame(function () {
-    if(!self.isEnded){
-      self.doFrame();
-    }
+    if(!self.isPaused){
+      if(!self.isEnded){
+        self.doFrame();
+      }
+    }  
   })
   // setTimeout(function(){
   // }, 700)

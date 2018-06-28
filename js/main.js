@@ -79,6 +79,12 @@ function main () {
         game.squares[ix].statusLeft = "moving";
       }  
     }
+    if (event.keyCode === 32 && !game.isPaused) {
+      game.isPaused = true;
+    } else if (event.keyCode === 32 && game.isPaused) {
+      game.isPaused = false;
+      game.doFrame();
+    }
   }
   
   function createGame () {

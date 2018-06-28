@@ -98,7 +98,7 @@ canvas {
   width: 200px;
 } */
 
-#lines {
+.lines {
   margin-left: 50px;
   padding-right: 80px;
   color: white;
@@ -106,7 +106,7 @@ canvas {
   font-size: 2em;
 }
 
-#score {
+.score {
   margin-left: 50px;
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -120,4 +120,21 @@ canvas {
   width: 1000px;
   margin-left: 13%;
   margin-top: 5%;
+}
+
+.lines-game-over {
+  float: left;
+  margin-left: 37%;
+  padding-right: 80px;
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 2em;
+}
+
+.score-game-over {
+  margin-left: 50px;
+  float: left;
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 2em;
 }

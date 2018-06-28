@@ -14,6 +14,8 @@ function main () {
   var container = null;
   var mainAudio = null;
   var lineAudio = null;
+  var linesText = null;
+  var scoreText = null;
   // var gameOverAudio = null;
 
   function createSplashScreen () {
@@ -70,6 +72,8 @@ function main () {
     if(counterGameOver !== 0) {
       container = document.getElementById("main-container");
       container.setAttribute("class", "container");
+      lines.remove();
+      score.remove();
     }
     container = document.getElementById("main-container")
 
@@ -80,11 +84,13 @@ function main () {
     container.appendChild(canvas);
 
     lines = document.createElement("h2");
+    lines.setAttribute("class", "lines");
     lines.setAttribute("id", "lines");
     lines.innerHTML = "Lines:  0"
     container.appendChild(lines);
     
     score = document.createElement("h2");
+    score.setAttribute("class", "score");
     score.setAttribute("id", "score");
     score.innerHTML = "Score:  0"
     container.appendChild(score);
@@ -113,8 +119,8 @@ function main () {
   function endGame() {
     canvas = document.getElementById("myCanvas");
     canvas.remove();
-    lines.remove();
-    score.remove();
+    // lines.remove();
+    // score.remove();
     mainAudio.pause();
     createGameOver();
   }
@@ -126,6 +132,11 @@ function main () {
     // container.appendChild(h1);
     
     container.appendChild(gameOver);
+
+    lines.removeAttribute("class");
+    lines.setAttribute("class", "lines-game-over")
+    score.removeAttribute("class");
+    score.setAttribute("class", "score-game-over")
 
     button = document.createElement("button");
     button.innerHTML = "RESTART";

@@ -28,7 +28,7 @@ function Game (ctx, canvas, cb) {
   this.callback = cb;
   this.isEnded = false;
   this.squares = [];
-  this.speed = 5;
+  this.speed = 10;
   this.score = 0;
   this.scoreToAdd = 1;
 
@@ -117,12 +117,10 @@ Game.prototype.deleteCompletedLines = function () {
         } else {
           self.scoreToAdd *= 2;
         }
-        console.log("self-speed: " + self.speed)
-
+        // console.log("self-speed: " + self.speed)
         self.score += self.scoreToAdd
         lines.innerHTML = "Lines:  " + countLines;
         score.innerHTML = "Score:  " + self.score;
-
       }
       // console.log("deleted line: "+ countLines)
     } 

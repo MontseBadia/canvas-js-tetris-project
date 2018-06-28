@@ -2,7 +2,6 @@
 
 function main () {
 
-  // var h1 = null;
   var button = null;
   var game = null;
   var canvas = null;
@@ -17,19 +16,10 @@ function main () {
   var instructions = null;
   var btnInst = null;
   var instructionsContent = null;
-  var music = null;
-  var musicContainer = null;
   var musicButton = null;
-  // var lineAudio = null;
-  // var linesText = null;
-  // var scoreText = null;
-  // var gameOverAudio = null;
 
   function createSplashScreen () {
-    // h1 = document.createElement("h1");
-    // h1.innerHTML = "IRON TETRIS"
-    // h1.setAttribute("id", "title");
-    // container.appendChild(h1);
+
     container = document.getElementById("main-container")
     container.setAttribute("class", "container");
 
@@ -52,27 +42,23 @@ function main () {
     instructionsContent.setAttribute("class", "instructionsContent");
     btnInst.appendChild(instructionsContent);
 
-    // musicContainer = document.getElementById("music-container")
-    // music = document.createElement("button");
-    // music.innerHTML = "MUSIC OFF";
-    // music.setAttribute("class", "button-music")
-    // musicContainer.appendChild(music);
-
     gameOver = document.getElementById("gif");
     gameOver.remove()
 
   }
   
   function moveToGame () {
+
     gameOver.remove();
     button.remove();
     createGame();
+
   }
 
   function handleKeyUp (event) {
+
     for (var ix = 0; ix < game.squares.length; ix++) {      
       if (game.squares[ix].statusBottom != "stop"){
-        // console.log(game.squares[ix].statusRight)
         if (game.squares[ix].statusRight != "stop") {
           if (event.keyCode === 39) {
             game.squares[ix].clearSquare();
@@ -112,6 +98,7 @@ function main () {
       score.remove();
       level.remove();
     }
+
     container = document.getElementById("main-container")
 
     canvas = document.createElement("canvas");
@@ -175,21 +162,17 @@ function main () {
   }
   
   function endGame() {
+
     canvas = document.getElementById("myCanvas");
     canvas.remove();
-    // lines.remove();
-    // score.remove();
     mainAudio.pause();
     mainAudio = null;
     createGameOver();
+
   }
   
   function createGameOver() {
-    // var h1 = document.createElement("h1");
-    // h1.setAttribute("id", "game-over");
-    // h1.innerHTML = "GAME OVER!!!"
-    // container.appendChild(h1);
-    
+
     container.appendChild(gameOver);
 
     lines.removeAttribute("class");
@@ -210,18 +193,20 @@ function main () {
     counterGameOver += 1;
 
     var gameOverAudio = new Audio ("mp3/game-over-sound.mp3");
+
     function startStopMusic () {
+
       if(!musicButton.checked){
         gameOverAudio.pause();
       }else{
         gameOverAudio.play();
       }
+      
     }
 
     musicButton = document.querySelector("#checkbox1");
     musicButton.addEventListener("click", startStopMusic)
-    // gameOverAudio = new Audio ("game-over-soundtrack.mp3");
-    // gameOverAudio.play();
+
   }
   
   createSplashScreen();

@@ -1,6 +1,7 @@
 'use strict'
 
 function Game (ctx, canvas, cb) {
+
   this.ctx = ctx;
   this.canvas = canvas;
   this.size = {
@@ -28,23 +29,22 @@ function Game (ctx, canvas, cb) {
   this.callback = cb;
   this.isEnded = false;
   this.squares = [];
-  this.speed = 18;
+  this.speed = 10;
   this.score = 0;
   this.scoreToAdd = 1;
   this.countLines = 0;
   this.level = 1;
-
   this.isPaused = false;
   this.doFrame();
+
 }
 
 Game.prototype.checkIfEnded = function () {
+
   var self = this;
   self.squares.forEach(function(item){
     if(item.position.y === 0 && item.statusBottom === "stop"){
       var gameOverAudio = new Audio ("mp3/game-over-sound.mp3");
-      // gameOverAudio.play();
-
       var musicButton = document.querySelector("#checkbox1");
 
       if(!musicButton.checked){
@@ -59,9 +59,11 @@ Game.prototype.checkIfEnded = function () {
       }, 1000)
     }
   })
+
 }
 
 Game.prototype.relocateSquares = function () {
+
   var self = this;
   if (self.deletedLine === "yes") {
     self.squares.forEach(function(item) {
@@ -87,9 +89,11 @@ Game.prototype.relocateSquares = function () {
     self.grid.lineFourteen = self.grid.lineFifteen;
     self.grid.lineFifteen = [];
   }  
+
 }
 
 Game.prototype.deleteCompletedLines = function () {
+
   var self = this;
   self.deletedLine = "no";
   var value= null;
@@ -116,7 +120,6 @@ Game.prototype.deleteCompletedLines = function () {
           self.squares.splice(j, 1)
         }
       }
-      // console.log(self.squares)
       value = []; //so that line value is empty again
       if (self.deletedLine === "yes") {
         self.countLines += 1;
@@ -128,35 +131,36 @@ Game.prototype.deleteCompletedLines = function () {
         } else {
           self.scoreToAdd *= 2;
         }
-        // console.log("self-speed: " + self.speed)
         self.score += self.scoreToAdd
         lines.innerHTML = "Lines:  " + self.countLines;
         score.innerHTML = "Score:  " + self.score;
         level.innerHTML = "Level:  " + self.level;
       }
-      // console.log("deleted line: "+ self.countLines)
     } 
   })
+
 }
 
 Game.prototype.checkCompletedLines = function () {
+
   var self = this;
   var value = null;
 
   Object.keys(self.grid).forEach(function(key){
     value = self.grid[key];
     if (value.length === 10) {
-      // console.log("completed line")
       value.push("0");
     }
   })
+
 }
 
 Game.prototype.createLinesArray = function () {
+
   var self = this;
   self.squares.forEach(function (item) {
-    // console.log(item)
     if (item.statusBottom === "stop" && item.statusLine != "off") {
+
       switch (true) {
         case item.position.y >= self.canvas.height - item.size.height:
         self.grid.lineOne.push(item)
@@ -204,26 +208,28 @@ Game.prototype.createLinesArray = function () {
         self.grid.lineFifteen.push(item)
         break;
       }
+
       item.statusLine = "off";
-      if (item.statusLine === "off") {  console.log(self.grid)      }
     }
   })
 }
 
 Game.prototype.checkCollisions = function (element) { //bottom collision between squares
+
   var self = this;
   self.squares.forEach(function (item) {
-    if (element != item){ //so that it does not run into the same element --> can be deleted ?
+    if (element != item){ //so that it does not run into the same element
       if (element.position.x === item.position.x && item.position.y <= element.position.y + element.size.height && element.position.y + element.size.height <= item.position.y + item.size.height) {
         element.statusBottom = "stop";
-        console.log("collision")
         element.position.y = item.position.y - element.size.height
       }
     }
   })
+
 }
 
 Game.prototype.checkRightCollisions = function (element) {
+
   var self = this;
   self.squares.forEach(function (item) {
     if (element != item) {
@@ -232,9 +238,11 @@ Game.prototype.checkRightCollisions = function (element) {
       }
     }  
   })
+
 }
 
 Game.prototype.checkLeftCollisions = function (element) {
+
   var self = this;
   self.squares.forEach(function (item) {
     if (element != item) {
@@ -243,19 +251,22 @@ Game.prototype.checkLeftCollisions = function (element) {
       }
     }  
   })
+
 }
 
 Game.prototype.drawSquares = function () {
+
   var self = this;
   if (self.squares.length === 0) {
     self.squares.push(new Square (self.ctx, self.canvas, self.speed));
   } else if (self.squares[self.squares.length-1].statusBottom === "stop") {
-    // console.log(self.squares.length)
     self.squares.push(new Square (self.ctx, self.canvas, self.speed));
   }
+
 }
 
 Game.prototype.doFrame = function () {
+
   var self = this;
   self.drawSquares();
   self.squares.forEach(function (item) {
@@ -270,16 +281,16 @@ Game.prototype.doFrame = function () {
     self.deleteCompletedLines();
     self.relocateSquares();
     self.checkIfEnded();
-    // item.draw();
   })
 
   window.requestAnimationFrame(function () {
+
     if(!self.isPaused){
       if(!self.isEnded){
         self.doFrame();
       }
     }  
+
   })
-  // setTimeout(function(){
-  // }, 700)
+
 }

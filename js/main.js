@@ -95,6 +95,7 @@ function main () {
     } else if (event.keyCode === 32 && game.isPaused) {
       game.isPaused = false;
       game.doFrame();
+      mainAudio.loop = true;
       mainAudio.play();
     }
   }
@@ -156,6 +157,7 @@ function main () {
       if(!musicButton.checked){
         mainAudio.pause();
       }else{
+        mainAudio.loop = true;
         mainAudio.play();
       }
     }

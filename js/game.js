@@ -28,7 +28,7 @@ function Game (ctx, canvas, cb) {
   this.callback = cb;
   this.isEnded = false;
   this.squares = [];
-  this.speed = 8;
+  this.speed = 20;
   this.score = 0;
   this.scoreToAdd = 1;
   this.countLines = 0;

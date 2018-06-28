@@ -14,6 +14,9 @@ function main () {
   var counterGameOver = 0;
   var container = null;
   var mainAudio = null;
+  var instructions = null;
+  var btnInst = null;
+  var instructionsContent = null;
   // var lineAudio = null;
   // var linesText = null;
   // var scoreText = null;
@@ -27,11 +30,24 @@ function main () {
     container = document.getElementById("main-container")
     container.setAttribute("class", "container");
 
+    btnInst = document.getElementById("btn-inst");
+    btnInst.setAttribute("class", "btn-inst");
+
     button = document.createElement("button");
     button.innerHTML = "START";
     button.setAttribute("class", "button")
-    container.appendChild(button);
+    btnInst.appendChild(button);
     button.addEventListener("click", moveToGame);
+
+    instructions = document.createElement("p");
+    instructions.innerHTML = "Instructions: ";
+    instructions.setAttribute("class", "instructions");
+    btnInst.appendChild(instructions);
+
+    instructionsContent = document.createElement("p");
+    instructionsContent.innerHTML = "Press ⇦ to move left     Press ⇨ to move right";
+    instructionsContent.setAttribute("class", "instructionsContent");
+    btnInst.appendChild(instructionsContent);
 
     gameOver = document.getElementById("gif");
     gameOver.remove()
@@ -109,7 +125,9 @@ function main () {
     }
 
     button.remove();
-    gameOver.remove()
+    gameOver.remove();
+    instructions.remove();
+    instructionsContent.remove();
 
     var ctxCanvas = canvas.getContext("2d");
 

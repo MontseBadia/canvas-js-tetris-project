@@ -17,6 +17,9 @@ function main () {
   var instructions = null;
   var btnInst = null;
   var instructionsContent = null;
+  var music = null;
+  var musicContainer = null;
+  var musicButton = null;
   // var lineAudio = null;
   // var linesText = null;
   // var scoreText = null;
@@ -49,8 +52,15 @@ function main () {
     instructionsContent.setAttribute("class", "instructionsContent");
     btnInst.appendChild(instructionsContent);
 
+    // musicContainer = document.getElementById("music-container")
+    // music = document.createElement("button");
+    // music.innerHTML = "MUSIC OFF";
+    // music.setAttribute("class", "button-music")
+    // musicContainer.appendChild(music);
+
     gameOver = document.getElementById("gif");
     gameOver.remove()
+
   }
   
   function moveToGame () {
@@ -81,9 +91,11 @@ function main () {
     }
     if (event.keyCode === 32 && !game.isPaused) {
       game.isPaused = true;
+      mainAudio.pause();
     } else if (event.keyCode === 32 && game.isPaused) {
       game.isPaused = false;
       game.doFrame();
+      mainAudio.play();
     }
   }
   
@@ -139,7 +151,19 @@ function main () {
 
     game = new Game(ctxCanvas, canvas, endGame);
     mainAudio = new Audio ("mp3/tetris-soundtrack.mp3");
-    mainAudio.play();
+    
+    function startStopMusic () {
+      if(!musicButton.checked){
+        mainAudio.pause();
+      }else{
+        mainAudio.play();
+      }
+    }
+
+    musicButton = document.querySelector("#checkbox1");
+    musicButton.addEventListener("click", startStopMusic)
+
+    startStopMusic ()
 
     window.addEventListener("keyup", handleKeyUp);
 
@@ -154,6 +178,7 @@ function main () {
     // lines.remove();
     // score.remove();
     mainAudio.pause();
+    mainAudio = null;
     createGameOver();
   }
   
@@ -182,6 +207,17 @@ function main () {
 
     counterGameOver += 1;
 
+    var gameOverAudio = new Audio ("mp3/game-over-sound.mp3");
+    function startStopMusic () {
+      if(!musicButton.checked){
+        gameOverAudio.pause();
+      }else{
+        gameOverAudio.play();
+      }
+    }
+
+    musicButton = document.querySelector("#checkbox1");
+    musicButton.addEventListener("click", startStopMusic)
     // gameOverAudio = new Audio ("game-over-soundtrack.mp3");
     // gameOverAudio.play();
   }

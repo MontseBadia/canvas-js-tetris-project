@@ -28,7 +28,7 @@ function Game (ctx, canvas, cb) {
   this.callback = cb;
   this.isEnded = false;
   this.squares = [];
-  this.speed = 8;
+  this.speed = 16;
   this.score = 0;
   this.scoreToAdd = 1;
   this.countLines = 0;
@@ -43,7 +43,16 @@ Game.prototype.checkIfEnded = function () {
   self.squares.forEach(function(item){
     if(item.position.y === 0 && item.statusBottom === "stop"){
       var gameOverAudio = new Audio ("mp3/game-over-sound.mp3");
-      gameOverAudio.play();
+      // gameOverAudio.play();
+
+      var musicButton = document.querySelector("#checkbox1");
+
+      if(!musicButton.checked){
+        gameOverAudio.pause();
+      }else{
+        gameOverAudio.play();
+      }
+      
       self.isEnded = true;
       setTimeout(function(){
         self.callback();
@@ -93,7 +102,10 @@ Game.prototype.deleteCompletedLines = function () {
           if (item === element) {
             self.deletedLine = "yes";
             var lineAudio = new Audio ("mp3/cleared-line-sound.mp3");
-            lineAudio.play();
+            var musicButton = document.querySelector("#checkbox1");
+            if(musicButton.checked){
+              lineAudio.play();
+            }
             item.deleted = true;
           }
         })

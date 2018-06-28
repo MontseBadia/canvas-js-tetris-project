@@ -153,6 +153,7 @@ canvas {
 
 .lines-game-over {
   float: left;
+  margin-top: 8%;
   margin-left: 28%;
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -161,6 +162,7 @@ canvas {
 
 .score-game-over {
   margin-left: 100px;
+  margin-top: 8%;
   float: left;
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -169,6 +171,7 @@ canvas {
 
 .level-game-over {
   margin-left: 100px;
+  margin-top: 8%;
   float: left;
   color: white;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

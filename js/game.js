@@ -28,10 +28,11 @@ function Game (ctx, canvas, cb) {
   this.callback = cb;
   this.isEnded = false;
   this.squares = [];
-  this.speed = 10;
+  this.speed = 8;
   this.score = 0;
   this.scoreToAdd = 1;
   this.countLines = 0;
+  this.level = 1;
   this.doFrame();
 }
 
@@ -107,6 +108,7 @@ Game.prototype.deleteCompletedLines = function () {
         self.countLines += 1;
         if(self.countLines % 2 === 0){
           self.speed += 1;
+          self.level += 1;
         } else if (self.countLines === 1){
           self.scoreToAdd = 20;
         } else {
@@ -116,6 +118,7 @@ Game.prototype.deleteCompletedLines = function () {
         self.score += self.scoreToAdd
         lines.innerHTML = "Lines:  " + self.countLines;
         score.innerHTML = "Score:  " + self.score;
+        level.innerHTML = "Level:  " + self.level;
       }
       // console.log("deleted line: "+ self.countLines)
     } 

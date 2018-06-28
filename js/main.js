@@ -2,20 +2,21 @@
 
 function main () {
 
-  var h1 = null;
+  // var h1 = null;
   var button = null;
   var game = null;
   var canvas = null;
   var score = null;
   var lines = null;
+  var level = null;
   var tetrisLogo = null;
   var gameOver = null;
   var counterGameOver = 0;
   var container = null;
   var mainAudio = null;
-  var lineAudio = null;
-  var linesText = null;
-  var scoreText = null;
+  // var lineAudio = null;
+  // var linesText = null;
+  // var scoreText = null;
   // var gameOverAudio = null;
 
   function createSplashScreen () {
@@ -74,6 +75,7 @@ function main () {
       container.setAttribute("class", "container");
       lines.remove();
       score.remove();
+      level.remove();
     }
     container = document.getElementById("main-container")
 
@@ -94,6 +96,12 @@ function main () {
     score.setAttribute("id", "score");
     score.innerHTML = "Score:  0"
     container.appendChild(score);
+
+    level = document.createElement("h2");
+    level.setAttribute("class", "level");
+    level.setAttribute("id", "level");
+    level.innerHTML = "Level:  0"
+    container.appendChild(level);
 
     if(counterGameOver===0){
       tetrisLogo = document.getElementById("tetris-logo");
@@ -134,9 +142,11 @@ function main () {
     container.appendChild(gameOver);
 
     lines.removeAttribute("class");
-    lines.setAttribute("class", "lines-game-over")
+    lines.setAttribute("class", "lines-game-over");
     score.removeAttribute("class");
-    score.setAttribute("class", "score-game-over")
+    score.setAttribute("class", "score-game-over");
+    level.removeAttribute("class");
+    level.setAttribute("class", "level-game-over");
 
     button = document.createElement("button");
     button.innerHTML = "RESTART";

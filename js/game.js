@@ -28,7 +28,7 @@ function Game (ctx, canvas, cb) {
   this.callback = cb;
   this.isEnded = false;
   this.squares = [];
-  this.speed = 25;
+  this.speed = 10;
 
   this.doFrame();
 
@@ -42,6 +42,8 @@ Game.prototype.checkIfEnded = function () {
   var self = this;
   self.squares.forEach(function(item){
     if(item.position.y === 0 && item.statusBottom === "stop"){
+      var gameOverAudio = new Audio ("mp3/game-over-sound.mp3");
+      gameOverAudio.play();
       self.isEnded = true;
       setTimeout(function(){
         self.callback();
@@ -90,6 +92,8 @@ Game.prototype.deleteCompletedLines = function () {
         self.squares.forEach(function(item, index){
           if (item === element) {
             self.deletedLine = "yes";
+            var lineAudio = new Audio ("mp3/cleared-line-sound.mp3");
+            lineAudio.play();
             item.deleted = true;
           }
         })
@@ -111,6 +115,7 @@ Game.prototype.deleteCompletedLines = function () {
 
         lines.innerHTML = "Lines:  " + countLines;
         score.innerHTML = "Score:  " + countLines * 100;
+
       }
       // console.log("deleted line: "+ countLines)
     } 

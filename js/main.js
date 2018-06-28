@@ -12,6 +12,9 @@ function main () {
   var gameOver = null;
   var counterGameOver = 0;
   var container = null;
+  var mainAudio = null;
+  var lineAudio = null;
+  // var gameOverAudio = null;
 
   function createSplashScreen () {
     // h1 = document.createElement("h1");
@@ -97,6 +100,9 @@ function main () {
     var ctxCanvas = canvas.getContext("2d");
 
     game = new Game(ctxCanvas, canvas, endGame);
+    mainAudio = new Audio ("mp3/tetris-soundtrack.mp3");
+    mainAudio.play();
+
     window.addEventListener("keyup", handleKeyUp);
 
     // setTimeout(function() {
@@ -109,6 +115,7 @@ function main () {
     canvas.remove();
     lines.remove();
     score.remove();
+    mainAudio.pause();
     createGameOver();
   }
   
@@ -129,7 +136,9 @@ function main () {
     container.removeAttribute("class");
 
     counterGameOver += 1;
-    
+
+    // gameOverAudio = new Audio ("game-over-soundtrack.mp3");
+    // gameOverAudio.play();
   }
   
   createSplashScreen();

@@ -29,13 +29,15 @@ function Game (ctx, canvas, cb) {
   this.callback = cb;
   this.isEnded = false;
   this.squares = [];
-  this.speed = 10;
+  this.speed = 8;
   this.score = 0;
   this.scoreToAdd = 1;
+  this.extraScore = 0; //Ironhack squares add extra score
   this.countLines = 0;
   this.level = 1;
   this.isPaused = false;
   this.doFrame();
+  this.isIronhackCounter = 1;
 
 }
 
@@ -116,6 +118,9 @@ Game.prototype.deleteCompletedLines = function () {
       })
       for(var j=self.squares.length-1; j>=0; j--){
         if(self.squares[j].deleted === true){
+          if(self.squares[j].isIronhack){
+            self.extraScore += 35
+          }
           self.squares[j].clearSquare();
           self.squares.splice(j, 1)
         }
@@ -132,6 +137,7 @@ Game.prototype.deleteCompletedLines = function () {
           self.scoreToAdd *= 2;
         }
         self.score += self.scoreToAdd
+        self.score += self.extraScore
         lines.innerHTML = "Lines:  " + self.countLines;
         score.innerHTML = "Score:  " + self.score;
         level.innerHTML = "Level:  " + self.level;
@@ -260,7 +266,13 @@ Game.prototype.drawSquares = function () {
   if (self.squares.length === 0) {
     self.squares.push(new Square (self.ctx, self.canvas, self.speed));
   } else if (self.squares[self.squares.length-1].statusBottom === "stop") {
-    self.squares.push(new Square (self.ctx, self.canvas, self.speed));
+    if(self.isIronhackCounter % 11 !== 0){
+      self.squares.push(new Square (self.ctx, self.canvas, self.speed, false));
+      self.isIronhackCounter++;
+    }else{
+      self.squares.push(new Square (self.ctx, self.canvas, self.speed, true));
+      self.isIronhackCounter++;
+    }
   }
 
 }

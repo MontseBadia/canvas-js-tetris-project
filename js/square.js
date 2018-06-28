@@ -1,6 +1,6 @@
 'use strict'
 
-function Square (ctx, canvas, speed) {
+function Square (ctx, canvas, speed, ironhackCondition) {
 
   this.ctx = ctx;
   this.canvas = canvas;
@@ -22,6 +22,11 @@ function Square (ctx, canvas, speed) {
   this.squareImageGreen.src = "img/green-square.png";
   this.squareImageYellow = new Image ();
   this.squareImageYellow.src = "img/yellow-square.png";
+  this.squareImageGreenIronhack = new Image ();
+  this.squareImageGreenIronhack.src = "img/green-square-ironhack.png";
+  this.squareImageYellowIronhack = new Image ();
+  this.squareImageYellowIronhack.src = "img/yellow-square-ironhack.png";
+  this.isIronhack = ironhackCondition;
 
 };
 
@@ -35,10 +40,18 @@ Square.prototype.clearSquare = function () {
 Square.prototype.draw = function () {
 
   var self = this;
-  if (Math.floor(Math.random() * 2) === 1){
-    self.ctx.drawImage(self.squareImageGreen,  self.position.x, self.position.y, self.size.width, self.size.height);
-  }else {
-    self.ctx.drawImage(self.squareImageYellow,  self.position.x, self.position.y, self.size.width, self.size.height);
+  if (!self.isIronhack) {
+    if (Math.floor(Math.random() * 2) === 1){
+      self.ctx.drawImage(self.squareImageGreen,  self.position.x, self.position.y, self.size.width, self.size.height);
+    }else {
+      self.ctx.drawImage(self.squareImageYellow,  self.position.x, self.position.y, self.size.width, self.size.height);
+    }
+  } else if (self.isIronhack) {
+    if (Math.floor(Math.random() * 2) === 1){
+      self.ctx.drawImage(self.squareImageGreenIronhack,  self.position.x, self.position.y, self.size.width, self.size.height);
+    }else {
+      self.ctx.drawImage(self.squareImageYellowIronhack ,  self.position.x, self.position.y, self.size.width, self.size.height);
+    }
   }
 
 }
@@ -97,5 +110,5 @@ Square.prototype.moveLeft = function () { //checks collision with left side of c
       self.position.x -= 30;
     }
   }
-    
+
 }

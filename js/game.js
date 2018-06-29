@@ -29,7 +29,7 @@ function Game (ctx, canvas, cb) {
   this.callback = cb;
   this.isEnded = false;
   this.squares = [];
-  this.speed = 8;
+  this.speed = 6;
   this.score = 0;
   this.scoreToAdd = 1;
   this.extraScore = 0; //Ironhack squares add extra score
